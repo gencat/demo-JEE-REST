@@ -1,0 +1,23 @@
+lb:
+ image: gencatcloud/haproxy:1.5.1
+ links:
+  - bookstore
+ ports:
+  - 80:80
+db:
+  image: gencatcloud/postgres:9.5.3
+  ports:
+    - 5432:5432
+  environment:
+    POSTGRES_USER: demospringboot
+    POSTGRES_PASSWORD: password
+  volumes:
+    - bookstore_volume:/var/lib/postgresql/data
+bookstore:
+  build: ./app/
+  links:
+    - db:postgres
+  ports:
+    - 8080:8080
+    - 8000:8000
+  command: bash -c "/wait-for-it.sh postgres:5432 -t 240 && /entrypoint.sh"

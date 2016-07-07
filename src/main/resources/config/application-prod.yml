@@ -1,0 +1,51 @@
+server:
+    port: 8080
+
+liquibase:
+    context: prod
+
+spring:
+    profiles:
+        active: prod
+    datasource:
+        dataSourceClassName: org.postgresql.ds.PGSimpleDataSource
+        url: jdbc:postgresql://postgres:5432/demospringboot   
+        databaseName: demospringboot
+        username: demospringboot
+        password: password
+
+    jpa:
+        database-platform: cat.gencat.springbootdemo.domain.util.FixedPostgreSQL82Dialect
+        database: POSTGRESQL
+        openInView: false
+        show_sql: false
+        generate-ddl: false
+        hibernate:
+            ddl-auto: none
+            naming-strategy: org.springframework.boot.orm.jpa.hibernate.SpringNamingStrategy
+        properties:
+            hibernate.cache.use_second_level_cache: true
+            hibernate.cache.use_query_cache: false
+            hibernate.generate_statistics: false
+            hibernate.cache.region.factory_class: org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory
+
+    thymeleaf:
+        mode: XHTML
+        cache: true
+
+metrics:
+    jmx.enabled: true
+    graphite:
+        enabled: false
+        host: localhost
+        port: 2003
+        prefix: springbootdemo
+
+http:
+    cache:
+        timeToLiveInDays: 31
+
+cache:
+    timeToLiveSeconds: 3600
+    ehcache:
+        maxBytesLocalHeap: 256M
