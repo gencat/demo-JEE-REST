@@ -17,6 +17,8 @@ bookstore:
   build: ./app/
   links:
     - db:postgres
+  volumes:
+   - /c/Users/app:/tmp
   ports:
     - 8080:8080
     - 8000:8000
