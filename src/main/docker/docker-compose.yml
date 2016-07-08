@@ -12,13 +12,13 @@ db:
     POSTGRES_USER: demospringboot
     POSTGRES_PASSWORD: password
   volumes:
-    - bookstore_volume:/var/lib/postgresql/data
+    - /home/canigo/demo-JEE-REST/postgres-datadir:/var/lib/postgresql/data
 bookstore:
   build: ./app/
   links:
     - db:postgres
   volumes:
-   - /home/canigo/demo-JEE-AppJava/target/:/tmp
+   - /home/canigo/demo-JEE-REST/target/:/tmp
   ports:
     - 8080:8080
     - 8000:8000
