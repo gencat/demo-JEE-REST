@@ -18,7 +18,7 @@ bookstore:
   links:
     - db:postgres
   volumes:
-   - /c/Users/app:/tmp
+   - /home/canigo/demo-JEE-AppJava/target/:/tmp
   ports:
     - 8080:8080
     - 8000:8000
